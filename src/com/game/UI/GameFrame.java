@@ -5,8 +5,6 @@ import com.game.map.GameMap;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Arrays;
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class GameFrame extends JFrame {
@@ -112,21 +110,26 @@ public class GameFrame extends JFrame {
         gamePanel.setSize(400,300);
         gamePanel.setLayout(new GridLayout(rows, cols));
 
-
         cellMatrix = new JRadioButton[rows][cols];
-        gameMatrix = new int[rows][cols];
+        gameMatrix = gameMap.getGameMap();
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 JRadioButton radioButton = new JRadioButton();
                 radioButton.setSize(30, 30);
                 radioButton.setSelected(false);
-                gameMatrix[i][j] = gameMap.getStatue(i, j);
                 cellMatrix[i][j] = radioButton;
                 gamePanel.add(radioButton);
             }
         }
         getContentPane().add(gamePanel, BorderLayout.CENTER);
         updateMap();
+    }
+
+    // 获取游戏状态
+    public void getStatue() {
+        for (int i = 0; i < gameMatrix.length; i++)
+            for (int j = 0; j < gameMatrix[i].length; j++)
+                gameMatrix[i][j] = cellMatrix[i][j].isSelected() ? 1 : 0;
     }
 
     // 更新游戏地图
@@ -142,32 +145,21 @@ public class GameFrame extends JFrame {
 
     // 清空画面
     private void onClear() {
-        for (int[] matrix : gameMatrix)
-            Arrays.fill(matrix, 0);
-        gameMap.setStatue(gameMatrix);
+        gameLogic.clearMap(gameMap);
         updateMap();
     }
 
     // 随机生成画面
     private void onRandom() {
-        for (int i = 0; i < gameMatrix.length; i++) {
-            for (int j = 0; j < gameMatrix[i].length; j++) {
-                gameMatrix[i][j] = new Random().nextInt(2);
-            }
-        }
-        gameMap.setStatue(gameMatrix);
+        gameLogic.randomMap(gameMap);
         updateMap();
     }
 
     // 单步演化
     private void onStep() {
-        for (int i = 0; i < gameMatrix.length; i++) {
-            for (int j = 0; j < gameMatrix[i].length; j++) {
-                gameMatrix[i][j] = cellMatrix[i][j].isSelected()? 1:0;
-            }
-        }
+        getStatue();
         gameMap.setStatue(gameMatrix);
-        gameLogic.game_cycle(gameMap);
+        gameLogic.gameCycle(gameMap);
         updateMap();
     }
 
