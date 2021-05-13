@@ -44,7 +44,7 @@ public class GameFrame extends JFrame {
         this.setTitle("生命游戏");
         this.setJMenuBar(menuBar);
         Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Image icon = toolkit.getImage("lifeGame.jpg");
+        Image icon = toolkit.getImage("GameOfLife.jpg");
         this.setIconImage(icon);
         this.setSize(800,600);
         this.setVisible(true);

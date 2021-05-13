@@ -125,7 +125,7 @@ public class GameMap {
         this.gameMap = map;
     }
 
-    // 程序入口
+    // 测试
     public static void main(String[] args){
         GameMap map = new GameMap(10, 10, 5);
         map.initMap();
