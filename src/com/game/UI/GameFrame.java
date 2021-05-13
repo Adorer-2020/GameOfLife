@@ -166,7 +166,7 @@ public class GameFrame extends JFrame {
     // 开始演化
     private void onStart() {
         GameLogic.gameStatue = GameLogic.START;
-        new Thread(new GameTask()).start();
+        new Thread(new GameTimer()).start();
         // 设置按钮状态
         start.setEnabled(false);
         btnStart.setEnabled(false);
@@ -218,7 +218,7 @@ public class GameFrame extends JFrame {
     }
 
     // 游戏线程类
-    private class GameTask implements Runnable {
+    private class GameTimer implements Runnable {
         // 一个生命周期
         @Override
         public void run() {

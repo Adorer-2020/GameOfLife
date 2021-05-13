@@ -1,37 +1,36 @@
 package com.game.timer;
 
-import com.game.UI.GameFrame;
-import com.game.map.GameMap;
-
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class GameTimer extends Timer {
-    // 动画默认间隔200ms
-    private static final int DEFAULT_DURATION = 200;
-
+public class GameTimer {
+    // 动画默认间隔500ms
+    private static final int DEFAULT_DURATION = 500;
     // 一个生命周期
     private int interval = DEFAULT_DURATION;
-    private GameMap gameMap;
-    private GameFrame gameFrame;
 
-    public GameTimer(GameMap gameMap, GameFrame game) {
-        this.gameMap = gameMap;
-    }
+    Timer timer;
 
-    public void start() {
-        Timer timer = new Timer();
-        timer.schedule(new Task(), 0, interval);
-        timer.cancel();
-    }
-
+    // 改变时间间隔
     public void setInterval(int interval) {
         this.interval = interval;
     }
 
+    // 计时器启动
+    public void start() {
+        timer = new Timer();
+        timer.schedule(new Task(), 0, interval);
+    }
+
+    // 计时器停止
+    public void stop() {
+        timer.cancel();
+    }
+
+    // 任务
     private class Task extends TimerTask {
         public void run() {
-
+            //new GameLogic().gameCycle(GameFrame.gameMap);
         }
     }
 }

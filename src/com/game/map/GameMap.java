@@ -9,7 +9,6 @@ public class GameMap {
     private int mortality;      // 死亡率
     private int speed;  	    // 运行速度
 
-
     private int[][] gameMap;	// 游戏地图
 
     // 构造函数
