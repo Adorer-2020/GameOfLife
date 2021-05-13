@@ -10,7 +10,7 @@ public class GameLogic {
     public static final boolean STOP = false;
     public static final boolean START = true;
 
-    public static boolean gameStatue;
+    public static boolean gameStatue;       // 游戏状态
 
     // 清空地图
     public void clearMap(GameMap gameMap) {
