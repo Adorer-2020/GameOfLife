@@ -1,9 +1,8 @@
-package com.game.Unit;
+package Unit;
 
 import com.game.UI.GameFrame;
 import com.game.logic.GameLogic;
 import com.game.map.GameMap;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

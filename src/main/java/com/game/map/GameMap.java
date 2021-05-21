@@ -47,22 +47,25 @@ public class GameMap {
     public int getNeighborCount(int row, int col) {
         // 活细胞数
         int count = 0;
+        // 溢出判断
+        if (row < 0 || row > nRows || col < 0 || col > nCols)
+            return -1;
         // 依此判断该方格周围的八个方格
-        if(row != 0)							//上
+        if (row != 0)                                //上
             count += gameMap[row - 1][col];
-        if(row != nRows - 1) 					// 下
+        if (row != nRows - 1)                        // 下
             count += gameMap[row + 1][col];
-        if(col != 0) 							// 左
+        if (col != 0)                                // 左
             count += gameMap[row][col - 1];
-        if(col != nCols - 1)						// 右
+        if (col != nCols - 1)                        // 右
             count += gameMap[row][col + 1];
-        if(row != 0 && col != 0) 				// 左上
+        if (row != 0 && col != 0)                    // 左上
             count += gameMap[row - 1][col - 1];
-        if(row != 0 && col != nCols - 1) 		// 右上
+        if (row != 0 && col != nCols - 1)            // 右上
             count += gameMap[row - 1][col + 1];
-        if(row != nRows - 1 && col != 0) 		// 左下
+        if (row != nRows - 1 && col != 0)            // 左下
             count += gameMap[row + 1][col - 1];
-        if(row != nRows - 1 && col != nCols - 1) 	// 右下
+        if (row != nRows - 1 && col != nCols - 1)    // 右下
             count += gameMap[row + 1][col + 1];
 
         return count;
